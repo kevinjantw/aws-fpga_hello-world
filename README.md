@@ -73,8 +73,8 @@ Hello world sources are [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-
   (14) Configure EC2 and S3 connection (fill access key in downloaded csv file and your region)
   ```console
   $ aws configure
-  AWS Access Key ID [None]: AKIA4ALHPDJIP7Y2MHKE
-  AWS Secret Access Key [None]: hnu++p3ZUhT91CzSVQzO+/O0mCZOLpoufO7tLW7o
+  AWS Access Key ID [None]: AKIA4***********MHKE
+  AWS Secret Access Key [None]: hnu++***************************fO7tLW7o
   Default region name [None]: us-east-1
   Default output format [None]:
   ```
