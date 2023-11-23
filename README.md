@@ -190,27 +190,31 @@ $ cat 23_11_23-034100_afi_id.txt
     "FpgaImageGlobalId": "agfi-0d56be399f577f45c"
 }
 ```
-(04) Wait until directory afi-001d35de56eed82fd and its logs are written to s3
+(04) Wait until developer vitis kernel tar file is written to s3
+
+<img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/b90d9a8a-1db3-4c5f-a107-8f1638a1c881" width=70%>
+
+(05) Wait until directory afi-001d35de56eed82fd and its logs are written to s3
 
 <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/169db288-7a51-4682-a38b-059688beb4a3" width=70%>  
 <img src="(https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/f00a74f4-a679-494b-9edf-2e0bc3350655" width=70%>
 <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/3dd94c8e-b0f8-481a-89e5-5a5ea7d8bd5a" width=70%>
 
-(05) Download State file in directory afi-001d35de56eed82fd and check written State is available
+(06) Download State file in directory afi-001d35de56eed82fd and check written State is available
 ```shell
 "State": {
         "Code": "available"
 }
 ```
-(06) Copy `~/vadd.awsxclbin` and `/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/hello_world` to local or s3
+(07) Copy `~/vadd.awsxclbin` and `/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/hello_world` to local or s3
 
-(07) Terminate running `z1d.2xlarge` instance in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
+(08) Terminate running `z1d.2xlarge` instance in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
 
-(08) Subscribe a [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a `f1.2xlarge` instance type
+(09) Subscribe a [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a `f1.2xlarge` instance type
 
-(09) Copy saved `vadd.awsxclbin` and `hello_world` to running `f1.2xlarge` instance
+(10) Copy saved `vadd.awsxclbin` and `hello_world` to running `f1.2xlarge` instance
 
-(10) To setup tools and runtime environment
+(11) To setup tools and runtime environment
 ```console
 $ git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
 $ cd $AWS_FPGA_REPO_DIR
@@ -218,7 +222,7 @@ $ source vitis_runtime_setup.sh
 # Wait till the MPD service has initialized. Check systemctl status mpd
 ```
 
-(11) Execute your Host Application
+(12) Execute your Host Application
 ```console
 $ chmod +x ./hello_world
 $ ./hello_world ./vadd.awsxclbin
