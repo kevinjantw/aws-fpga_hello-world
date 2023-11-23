@@ -97,7 +97,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   (05) Set the new limit value to 1 or more  
   (06) Fill the rest of the form as appropriate and click Submit
 
-* Reference offical document
+* Reference offical document  
   [Quick Start Guide to Accelerating your C/C++ application on an AWS F1 FPGA Instance with Vitis](https://github.com/aws/aws-fpga/blob/master/Vitis/README.md#build-the-host-application-and-xilinx-fpga-binary)   
   
 # Build the host application and Xilinx FPGA binary
@@ -143,7 +143,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [hw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/hw_emulation.log)
   
-* Generate Hardware (HW) Bitstream (xclbin)
+* Generate Hardware (HW) FPGA Binary 
   The Vitis system build flow enables the developer to build their host application as well as their Xilinx FPGA Binary.
   The instructions below describe how to build the Xilinx FPGA Binary and host application using the Makefile provided with a simple "hello world" example:
   ```console
@@ -154,3 +154,41 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   [hw.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/hw.log)
   
 # Test on AWS FPGA F1 instance
+The *create_vitis_afi.sh* script is provided to facilitate AFI (Amazon FPGA Image) creation from a xclbin (Xilinx FPGA Binary)
+* Takes in your Xilinx FPGA Binary *.xclbin file
+* Calls *aws ec2 create_fpga_image* to generate an AFI under the hood
+* Generates a <timestamp>_afi_id.txt which contains the identifiers for your AFI
+* Creates an AWS FPGA Binary file with an *.awsxclbin extension that is composed of: Metadata and AGFI-ID
+
+Before running *create_vitis_afi.sh*, you need to
+* Confirm vadd.xclbin was generated
+* Create s3 bucket and folders for *create_vitis_afi.sh* writing
+* Configure s3 access from ec2
+
+Example on [S3 Management Console](https://s3.console.aws.amazon.com/)
+
+<img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/a86b224e-c9d3-4cb1-93cd-c250d262c0b6" width=70%>
+
+AWS configuration
+```console
+  $ aws configure
+  AWS Access Key ID [None]: AKIA4***********MHKE
+  AWS Secret Access Key [None]: hnu++***************************fO7tLW7o
+  Default region name [None]: us-east-1
+  Default output format [None]:
+```
+Run *create_vitis_afi.sh*
+```console
+$VITIS_DIR/tools/create_vitis_afi.sh  \
+ -xclbin=/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin  \
+ -o=/home/centos/vadd -s3_bucket=f1-s3 -s3_dcp_key=aws_xclbin -s3_logs_key=log
+```
+Generate awsxclbin
+```console
+$ $VITIS_DIR/tools/create_vitis_afi.sh  \
+>  -xclbin=/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin  \
+>  -o=/home/centos/vadd -s3_bucket=f1-s3 -s3_dcp_key=aws_xclbin -s3_logs_key=log
+```
+[awsxclbin.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/awsxclbin.log)
+
+
