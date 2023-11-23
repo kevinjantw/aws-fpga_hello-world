@@ -177,13 +177,7 @@ AWS configuration
   Default region name [None]: us-east-1
   Default output format [None]:
 ```
-Run *create_vitis_afi.sh*
-```console
-$VITIS_DIR/tools/create_vitis_afi.sh  \
- -xclbin=/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin  \
- -o=/home/centos/vadd -s3_bucket=f1-s3 -s3_dcp_key=aws_xclbin -s3_logs_key=log
-```
-Generate awsxclbin
+Run *create_vitis_afi.sh* and generate awsxclbin
 ```console
 $ $VITIS_DIR/tools/create_vitis_afi.sh  \
 >  -xclbin=/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin  \
