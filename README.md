@@ -90,22 +90,22 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/85611197-6d00-4d1a-b85b-cb87c50713a1" width=60%>
   
 * Request access to Amazon EC2 F1 instances  
-  (01) Open the Service quota increase [form](http://aws.amazon.com/contact-us/ec2-request)  
+  (01) Open the `Service quota increase` [form](http://aws.amazon.com/contact-us/ec2-request)  
   (02) Submit a Service limit increase for EC2 Instances   
   (03) Select the region where you want to access F1 instances: US East (N.Virginia), US West (Oregon) or EU (Ireland)  
   (04) Select the instance type, either `f1.2xlarge` or `f1.16xlarge`  
   (05) Set the new limit value to 1 or more  
-  (06) Fill the rest of the form as appropriate and click Submit
+  (06) Fill the rest of the form as appropriate and click `Submit`
 
 * Reference offical document  
   [Quick Start Guide to Accelerating your C/C++ application on an AWS F1 FPGA Instance with Vitis](https://github.com/aws/aws-fpga/blob/master/Vitis/README.md#build-the-host-application-and-xilinx-fpga-binary)   
   
 # Build the host application and Xilinx FPGA binary
-(01) Run [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a performance recommended `z1d.2xlarge` instance type
+(01) Subscribe a [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a performance recommended `z1d.2xlarge` instance type
  
  <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/5befcd47-f88f-4a79-ab3d-1b84a35aa45d" width=70%>
 
-(02) SSH connection to the running EC2 `z1d.2xlarge` instance, your own EC2 IP can be found in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
+(02) SSH connection to the running EC2 `z1d.2xlarge` instance, your EC2 public IP can be found in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
 
 (03) Clone this github repository and source the *vitis_setup.sh* script  
   * AWS Vitis Platform that contains the dynamic hardware that enables Vitis kernels to run on AWS F1 instances  
@@ -122,8 +122,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   
 (04) Software (SW) Emulation  
   For CPU-based (SW) emulation, both the host code and the FPGA binary code are compiled to run on an x86 processor. SW Emulation enables developers to iterate and refine 
-  the algorithms through fast compilation. The iteration time is similar to software compile and run cycles on a CPU.  
-  The instructions below describe how to run the Vitis SW Emulation flow using the Makefile provided with a simple "hello world" example
+  the algorithms through fast compilation. The iteration time is similar to software compile and run cycles on a CPU.
   ```console
   $ cd $VITIS_DIR/examples/xilinx/hello_world
   $ make clean
@@ -134,7 +133,6 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
 (05) Hardware (HW) Emulation  
   The Vitis hardware emulation flow enables the developer to check the correctness of the logic generated for the FPGA binary. This emulation flow invokes the hardware
   simulator in the Vitis environment to test the functionality of the code that will be executed on the FPGA Custom Logic.
-  The instructions below describe how to run the HW Emulation flow using the Makefile provided with a simple "hello world" example:
   ```console
   $ cd $VITIS_DIR/examples/xilinx/hello_world
   $ make clean
@@ -144,7 +142,6 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   
 (06) Generate Hardware (HW) Xilinx FPGA Binary   
   The Vitis system build flow enables the developer to build their host application as well as their Xilinx FPGA Binary.
-  The instructions below describe how to build the Xilinx FPGA Binary and host application using the Makefile provided with a simple "hello world" example:
   ```console
   $ cd $VITIS_DIR/examples/xilinx/hello_world
   $ make clean
@@ -162,13 +159,13 @@ The *create_vitis_afi.sh* script is provided to facilitate AFI (Amazon FPGA Imag
 Before running *create_vitis_afi.sh*, you need to
 * Confirm vadd.xclbin was generated
 * Create s3 bucket and folders for *create_vitis_afi.sh* writing
-* Configure s3 access from ec2
+* Configure access between s3 and ec2
 
 Example on [S3 Management Console](https://s3.console.aws.amazon.com/)
 
 <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/a86b224e-c9d3-4cb1-93cd-c250d262c0b6" width=70%>
 
-(01) AWS configuration
+(01) Configure AWS access
 ```console
   $ aws configure
   AWS Access Key ID [None]: AKIA4***********MHKE
@@ -185,7 +182,7 @@ $ $VITIS_DIR/tools/create_vitis_afi.sh  \
 [awsxclbin.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/awsxclbin.log)
 
 (03) Get AFI ID  
-The *_afi_id.txt file generated by the create_vitis_afi.sh. AGFI ID is a global ID that is used to refer to an AFI from within an F1 instance.
+The *_afi_id.txt file generated by the create_vitis_afi.sh, AGFI ID is a global ID that is used to refer to an AFI from within an F1 instance
 ```console
 $ cat 23_11_23-034100_afi_id.txt
 {
@@ -196,7 +193,7 @@ $ cat 23_11_23-034100_afi_id.txt
 (04) Wait until directory afi-001d35de56eed82fd and its logs are written to s3
 
 <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/169db288-7a51-4682-a38b-059688beb4a3" width=70%>  
-
+<img src="(https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/f00a74f4-a679-494b-9edf-2e0bc3350655" width=70%>
 <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/3dd94c8e-b0f8-481a-89e5-5a5ea7d8bd5a" width=70%>
 
 (05) Download State file in directory afi-001d35de56eed82fd and check written State is available
@@ -209,15 +206,15 @@ $ cat 23_11_23-034100_afi_id.txt
 
 (07) Terminate running `z1d.2xlarge` instance in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
 
-(08) Run [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a `f1.2xlarge` instance type
+(08) Subscribe a [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a `f1.2xlarge` instance type
 
-(09) Copy saved vadd.awsxclbin and hello_world to running `f1.2xlarge` instance
+(09) Copy saved `vadd.awsxclbin` and `hello_world` to running `f1.2xlarge` instance
 
 (10) To setup tools and runtime environment
 ```console
 $ git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
 $ cd $AWS_FPGA_REPO_DIR
-$ source vitis_runtime_setup.sh   # Other runtime env settings needed by the host app should be setup after this step
+$ source vitis_runtime_setup.sh
 # Wait till the MPD service has initialized. Check systemctl status mpd
 ```
 
