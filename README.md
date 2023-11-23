@@ -101,14 +101,13 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   [Quick Start Guide to Accelerating your C/C++ application on an AWS F1 FPGA Instance with Vitis](https://github.com/aws/aws-fpga/blob/master/Vitis/README.md#build-the-host-application-and-xilinx-fpga-binary)   
   
 # Build the host application and Xilinx FPGA binary
-* Run [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a performance recommended `z1d.2xlarge` instance type
+(01) Run [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a performance recommended `z1d.2xlarge` instance type
  
  <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/5befcd47-f88f-4a79-ab3d-1b84a35aa45d" width=70%>
 
-* SSH connection to the running EC2 `z1d.2xlarge` instance, your own EC2 IP can be found in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
+(02) SSH connection to the running EC2 `z1d.2xlarge` instance, your own EC2 IP can be found in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
 
-* Github and Environment  
-  Clone this github repository and source the *vitis_setup.sh* script:  
+(03) Clone this github repository and source the *vitis_setup.sh* script  
   * AWS Vitis Platform that contains the dynamic hardware that enables Vitis kernels to run on AWS F1 instances  
   * Valid platforms for shell_v04261818: AWS_PLATFORM_201920_3 (Default) AWS F1 Vitis platform  
   * Sets up the Xilinx Vitis example submodules  
@@ -121,7 +120,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [vitis_setup.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/vitis_setup.log)
   
-* Software (SW) Emulation
+(04) Software (SW) Emulation
   For CPU-based (SW) emulation, both the host code and the FPGA binary code are compiled to run on an x86 processor. SW Emulation enables developers to iterate and refine 
   the algorithms through fast compilation. The iteration time is similar to software compile and run cycles on a CPU.  
   The instructions below describe how to run the Vitis SW Emulation flow using the Makefile provided with a simple "hello world" example
@@ -132,7 +131,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [sw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/sw_emulation.log)
   
-* Hardware (HW) Emulation
+(05) Hardware (HW) Emulation
   The Vitis hardware emulation flow enables the developer to check the correctness of the logic generated for the FPGA binary. This emulation flow invokes the hardware
   simulator in the Vitis environment to test the functionality of the code that will be executed on the FPGA Custom Logic.
   The instructions below describe how to run the HW Emulation flow using the Makefile provided with a simple "hello world" example:
@@ -143,7 +142,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [hw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/hw_emulation.log)
   
-* Generate Hardware (HW) FPGA Binary 
+(06) Generate Hardware (HW) FPGA Binary 
   The Vitis system build flow enables the developer to build their host application as well as their Xilinx FPGA Binary.
   The instructions below describe how to build the Xilinx FPGA Binary and host application using the Makefile provided with a simple "hello world" example:
   ```console
