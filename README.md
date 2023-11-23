@@ -69,7 +69,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   (10) Click `Launch instance`  
   (11) Open the [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)  
   (12) Get running EC2 instance IP from `Public IPv4`  
-  (13) SSH connection to EC2 IP with pem file and username `centos`, here is a MobaXterm example
+  (13) SSH connection to EC2 IP with downloaded pem file and username `centos`, here is a MobaXterm example
 
   <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/248380d6-7f5c-403c-b478-819694203cf1" width=70%>
   
