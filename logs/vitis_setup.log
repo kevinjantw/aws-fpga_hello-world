@@ -1,0 +1,140 @@
+Authenticating with public key "Imported-Openssh-Key"
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                 • MobaXterm Personal Edition v23.2 •                 │
+    │               (SSH client, X server and network tools)               │
+    │                                                                      │
+    │ ⮞ SSH session to centos@34.228.153.96                                │
+    │   • Direct SSH      :  ✓                                             │
+    │   • SSH compression :  ✓                                             │
+    │   • SSH-browser     :  ✓                                             │
+    │   • X11-forwarding  :  ✗  (disabled or not supported by server)      │
+    │                                                                      │
+    │ ⮞ For more info, ctrl+click on help or visit our website.            │
+    └──────────────────────────────────────────────────────────────────────┘
+
+ ___ ___  ___   _     ___  _____   __    _   __  __ ___
+| __| _ \/ __| /_\   |   \| __\ \ / /   /_\ |  \/  |_ _|
+| _||  _/ (_ |/ _ \  | |) | _| \ V /   / _ \| |\/| || |
+|_| |_|  \___/_/ \_\ |___/|___| \_/   /_/ \_\_|  |_|___|
+AMI Version:        1.12.2
+Xilinx Version:     2021.2
+Readme:             /home/centos/src/README.md
+AMI Release Notes:  /home/centos/src/RELEASE_NOTES.md
+GUI/Cluster setup:  https://github.com/aws/aws-fpga/blob/master/developer_resources
+Developer Support:  https://github.com/aws/aws-fpga/blob/master/README.md#developer-support
+Centos Common code: /srv/git/centos-git-common
+Xilinx XRT source:  https://github.com/Xilinx/XRT
+[centos@ip-172-31-19-96 ~]$ git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
+Cloning into '/home/centos/src/project_data/aws-fpga'...
+remote: Enumerating objects: 9672, done.
+remote: Counting objects: 100% (130/130), done.
+remote: Compressing objects: 100% (97/97), done.
+remote: Total 9672 (delta 35), reused 112 (delta 29), pack-reused 9542
+Receiving objects: 100% (9672/9672), 340.28 MiB | 84.42 MiB/s, done.
+Resolving deltas: 100% (5341/5341), done.
+Checking out files: 100% (1840/1840), done.
+[centos@ip-172-31-19-96 ~]$ cd $AWS_FPGA_REPO_DIR
+[centos@ip-172-31-19-96 aws-fpga]$ source vitis_setup.sh
+INFO: Setting up environment variables
+DEBUG: AWS_FPGA_REPO_DIR=/home/centos/src/project_data/aws-fpga
+INFO: Sourcing sdk_setup.sh
+INFO: Setting up environment variables
+DEBUG: AWS_FPGA_REPO_DIR=/home/centos/src/project_data/aws-fpga
+Entering /home/centos/src/project_data/aws-fpga/sdk/userspace/utils
+rm -f *.o *.a ../lib/libutils.a
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g -std=gnu99 -fPIC -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I. -I../include -I/usr/include   -c -o io.o io.c
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g -std=gnu99 -fPIC -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I. -I../include -I/usr/include   -c -o log.o log.c
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g -std=gnu99 -fPIC -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I. -I../include -I/usr/include   -c -o logger-kmsg.o logger-kmsg.c
+mkdir -p ../lib
+ar rcs ../lib/libutils.a io.o log.o logger-kmsg.o
+Entering /home/centos/src/project_data/aws-fpga/sdk/userspace/fpga_libs/fpga_pci
+rm -f *.o ../../lib/libfpga_pci.a
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g -std=gnu99 -fPIC -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I. -I../../include -I/usr/include   -c -o fpga_pci.o fpga_pci.c
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g -std=gnu99 -fPIC -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I. -I../../include -I/usr/include   -c -o fpga_pci_sysfs.o fpga_pci_sysfs.c
+mkdir -p ../../lib
+ar rcs ../../lib/libfpga_pci.a fpga_pci.o fpga_pci_sysfs.o
+Entering /home/centos/src/project_data/aws-fpga/sdk/userspace/fpga_libs/fpga_dma
+rm -f *.o ../../lib/libfpga_dma.a
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g -std=gnu99 -fPIC -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I. -I../../include -I/usr/include   -c -o fpga_dma_utils.o fpga_dma_utils.c
+mkdir -p ../../lib
+ar rcs ../../lib/libfpga_dma.a fpga_dma_utils.o
+Entering /home/centos/src/project_data/aws-fpga/sdk/userspace/fpga_libs/fpga_mgmt
+rm -f *.o ../../lib/libfpga_mgmt.a ../../lib/so/libfpga_mgmt.so.1.0.0
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g -std=gnu99 -fPIC -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I. -I../../include -I/usr/include   -c -o fpga_mgmt_cmd.o fpga_mgmt_cmd.c
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g -std=gnu99 -fPIC -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I. -I../../include -I/usr/include   -c -o fpga_mgmt.o fpga_mgmt.c
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g -std=gnu99 -fPIC -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I. -I../../include -I/usr/include   -c -o fpga_hal_mbox.o fpga_hal_mbox.c
+mkdir -p ../../lib
+for library in ../../lib/libfpga_pci.a ../../lib/libutils.a ../../lib/libfpga_dma.a; do ar -x $library; done
+ar rcs ../../lib/libfpga_mgmt.a *.o
+mkdir -p ../../lib/so
+cc -o ../../lib/so/libfpga_mgmt.so.1.0.0 -shared fpga_mgmt_cmd.o fpga_mgmt.o fpga_hal_mbox.o -Wl,-soname,libfpga_mgmt.so.1 -Wl,--whole-archive ../../lib/libfpga_pci.a ../../lib/libutils.a ../../lib/libfpga_dma.a -Wl,--no-whole-archive -lrt -lpthread
+ln -sf libfpga_mgmt.so.1.0.0 ../../lib/so/libfpga_mgmt.so
+Entering /home/centos/src/project_data/aws-fpga/sdk/userspace/fpga_mgmt_tools/src
+rm -f *.o *.a fpga-local-cmd static-fpga-local-cmd
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g  -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I../../include/hal -I../../include -I../. -I.   -c -o fpga_local_cmd.o fpga_local_cmd.c
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g  -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I../../include/hal -I../../include -I../. -I.   -c -o fpga_local_cmd_parse.o fpga_local_cmd_parse.c
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g  -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I../../include/hal -I../../include -I../. -I.   -c -o virtual_jtag_pcie.o virtual_jtag_pcie.c
+cc -DCONFIG_LOGLEVEL=0 -DFPGA_PCI_BARS_MAX=64 -DCLI_VERSION='"1.4.24"' -g  -Wall -Werror -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes -I../../include/hal -I../../include -I../. -I.   -c -o virtual_jtag_server.o virtual_jtag_server.c
+cc -o fpga-local-cmd fpga_local_cmd.o fpga_local_cmd_parse.o virtual_jtag_pcie.o virtual_jtag_server.o -L../../lib/so -lfpga_mgmt
+cc -o static-fpga-local-cmd fpga_local_cmd.o fpga_local_cmd_parse.o virtual_jtag_pcie.o virtual_jtag_server.o -L../../lib -lfpga_mgmt -lrt -lpthread
+Build complete.
+
+Root privileges are required to install. You may be asked for your password...
+Executing as root...
+
+AWS FPGA: Copying Amazon FPGA Image (AFI) Management Tools to /usr/bin
+AWS FPGA: Installing shared library to /usr/local/lib64
+        libfpga_mgmt.so.1 (libc6,x86-64) => /usr/local/lib64/libfpga_mgmt.so.1
+AWS FPGA: Installing python bindings for FPGA management library
+Installed /usr/lib64/python2.7/site-packages/fpga_dma.py
+Installed /usr/lib64/python2.7/site-packages/fpga_mgmt.py
+Installed /usr/lib64/python2.7/site-packages/fpga_pci.py
+Installed /usr/lib64/python3.6/site-packages/fpga_dma.py
+Installed /usr/lib64/python3.6/site-packages/fpga_mgmt.py
+Installed /usr/lib64/python3.6/site-packages/fpga_pci.py
+AWS FPGA: Done with Amazon FPGA Image (AFI) Management Tools install.
+Done with SDK install.
+INFO: sdk_setup.sh PASSED
+INFO: XILINX_VITIS is already set to /opt/Xilinx/Vitis/2021.2
+RELEASE_VER equals 2021.2
+INFO:  XILINX_VITIS is set to /opt/Xilinx/Vitis/2021.2
+INFO: Setting up Vitis patches if required.
+INFO: Checking if patch AR71715 needs to be installed
+INFO: Checking if patch AR73068 needs to be installed
+INFO: Patching Vitis with AR73068
+INFO: Patch AR73068 not applicable for Vivado Vivado v2021.2 (64-bit).
+INFO: Using Vitis 2021.2
+INFO: Updating Xilinx Vitis Examples 2021.2
+Submodule 'Vitis/examples/xilinx_2021.2' (https://github.com/Xilinx/Vitis_Accel_Examples) registered for path 'Vitis/examples/xilinx_2021.2'
+Cloning into 'Vitis/examples/xilinx_2021.2'...
+remote: Enumerating objects: 63484, done.
+remote: Counting objects: 100% (9310/9310), done.
+remote: Compressing objects: 100% (1429/1429), done.
+remote: Total 63484 (delta 7927), reused 9201 (delta 7832), pack-reused 54174
+Receiving objects: 100% (63484/63484), 46.66 MiB | 54.74 MiB/s, done.
+Resolving deltas: 100% (52504/52504), done.
+Submodule path 'Vitis/examples/xilinx_2021.2': checked out 'f61637e9263ecc1be3df34182ea6c53a0ca10447'
+HTTP/1.1 301 Moved Permanently
+Server: CloudFront
+Date: Tue, 21 Nov 2023 12:51:37 GMT
+Content-Type: text/html
+Content-Length: 167
+Connection: keep-alive
+Location: https://www.amazon.com/
+X-Cache: Redirect from cloudfront
+Via: 1.1 13f73562b215175ddd75c2902ae36650.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: IAD61-P1
+Alt-Svc: h3=":443"; ma=86400
+X-Amz-Cf-Id: Q9TZfX1Bq24Cxuwo_R8POSxVWli6BWLKlcBNXmTv-cwdKbilXEBfJw==
+
+INFO: Internet Access OK
+INFO: Checking ICD is installed
+INFO: Found 'libxilinxopencl.so
+INFO: VITIS XSA hasn't been downloaded yet.
+INFO: Downloading latest VITIS XSA from aws-fpga-hdk-resources/Vitis/xsa_v121319_shell_v04261818/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xsa
+INFO: AWS Platform: 201920_3 Vitis Platform is up-to-date
+INFO: XRT Install, non-dev
+INFO: The default AWS Platform has been set to: "AWS_PLATFORM=$AWS_PLATFORM_201920_3"
+INFO: Vitis Setup PASSED
+INFO: To run a runtime example, start the MPD service by calling: `systemctl is-active --quiet mpd || sudo systemctl start mpd`
+[centos@ip-172-31-19-96 aws-fpga]$

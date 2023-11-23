@@ -1,0 +1,289 @@
+[centos@ip-172-31-19-96 hello_world]$ cd $VITIS_DIR/examples/xilinx/hello_world
+[centos@ip-172-31-19-96 hello_world]$ make clean
+rm -rf ./hello_world /{*sw_emu*,*hw_emu*}
+rm -rf profile_* TempConfig system_estimate.xtxt *.rpt *.csv
+rm -rf src/*.ll *v++* .Xil emconfig.json dltmp* xmltmp* *.log *.jou *.wcfg *.wdb
+[centos@ip-172-31-19-96 hello_world]$ make run TARGET=hw_emu DEVICE=$AWS_PLATFORM all
+utils.mk:23: WARNING: DEVICE is deprecated in make command. Please use PLATFORM instead
+g++ -o hello_world /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/common/includes/xcl2/xcl2.cpp src/host.cpp -I/opt/xilinx/xrt/include -I/opt/Xilinx/Vivado/2021.2/include -Wall -O0 -g -std=c++1y -I/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/common/includes/xcl2 -fmessage-length=0 -L/opt/xilinx/xrt/lib -lOpenCL -pthread -lrt -lstdc++
+mkdir -p ./_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+v++ -t hw_emu --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm --save-temps  -g -c -k vadd --temp_dir ./_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3  -I'src' -o'_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo' 'src/vadd.cpp'
+Option Map File Used: '/opt/Xilinx/Vitis/2021.2/data/vitis/vpp/optMap.xml'
+
+****** v++ v2021.2 (64-bit)
+  **** SW Build 3363252 on 2021-10-14-04:41:01
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
+        Reports: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/vadd
+        Log files: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/logs/vadd
+Running Dispatch Server on port: 38103
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo.compile_summary, at Tue Nov 21 12:57:05 2023
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Tue Nov 21 12:57:05 2023
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/vadd/v++_compile_vadd_guidance.html', at Tue Nov 21 12:57:06 2023
+INFO: [v++ 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2021.2
+INFO: [v++ 60-1302] Platform 'xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm' has been explicitly enabled for this release with an extended warranty.
+INFO: [v++ 60-585] Compiling for hardware emulation target
+INFO: [v++ 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+INFO: [v++ 60-242] Creating kernel: 'vadd'
+
+===>The following messages were generated while  performing high-level synthesis for kernel: vadd Log file: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd/vadd/vitis_hls.log :
+INFO: [v++ 204-61] Pipelining loop 'mem_rd'.
+INFO: [v++ 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'mem_rd'
+INFO: [v++ 204-61] Pipelining loop 'mem_rd'.
+INFO: [v++ 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'mem_rd'
+INFO: [v++ 204-61] Pipelining loop 'execute'.
+INFO: [v++ 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'execute'
+INFO: [v++ 204-61] Pipelining loop 'mem_wr'.
+INFO: [v++ 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'mem_wr'
+INFO: [v++ 200-789] **** Estimated Fmax: 342.47 MHz
+INFO: [v++ 60-594] Finished kernel compilation
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/vadd/system_estimate_vadd.xtxt
+INFO: [v++ 60-586] Created _x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command.
+    vitis_analyzer /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo.compile_summary
+INFO: [v++ 60-791] Total elapsed time: 0h 3m 17s
+INFO: [v++ 60-1653] Closing dispatch client.
+mkdir -p ./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+v++ -t hw_emu --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm --save-temps  -g -l  --temp_dir ./_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3 -o'./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin' _x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo
+Option Map File Used: '/opt/Xilinx/Vitis/2021.2/data/vitis/vpp/optMap.xml'
+
+****** v++ v2021.2 (64-bit)
+  **** SW Build 3363252 on 2021-10-14-04:41:01
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+INFO: [v++ 60-897] Reading --xp value from platform: param:compiler.lockFlowCritSlackThreshold=0
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:hd.routingContainmentAreaExpansion=true
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:hd.supportClockNetCrossDiffReconfigurablePartitions=1
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:bitstream.enablePR=4123
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:physynth.ultraRAMOptOutput=false
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MAX_URAM_CASCADE_HEIGHT}={1}
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:synth.elaboration.rodinMoreOptions={rt::set_parameter disableOregPackingUram true}
+WARNING: [v++ 60-642] Invalid or deprecated parameter name: compiler.lockFlowCritSlackThreshold
+INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
+        Reports: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/link
+        Log files: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/logs/link
+Running Dispatch Server on port: 39309
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin.link_summary, at Tue Nov 21 13:00:24 2023
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Tue Nov 21 13:00:24 2023
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/link/v++_link_vadd.link_guidance.html', at Tue Nov 21 13:00:25 2023
+INFO: [v++ 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2021.2
+INFO: [v++ 60-1302] Platform 'xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm' has been explicitly enabled for this release with an extended warranty.
+INFO: [v++ 60-629] Linking for hardware emulation target
+INFO: [v++ 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+INFO: [v++ 60-1332] Run 'run_link' status: Not started
+INFO: [v++ 60-1443] [13:00:28] Run run_link: Step system_link: Started
+INFO: [v++ 60-1453] Command Line: system_link --xo /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo -keep --xpfm /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm --target emu --output_dir /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int --temp_dir /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link
+INFO: [v++ 60-1454] Run Directory: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/run_link
+INFO: [SYSTEM_LINK 60-1316] Initiating connection to rulecheck server, at Tue Nov 21 13:00:30 2023
+INFO: [SYSTEM_LINK 82-70] Extracting xo v3 file /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo
+INFO: [SYSTEM_LINK 82-53] Creating IP database /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-38] [13:00:32] build_xd_ip_db started: /opt/Xilinx/Vitis/2021.2/bin/build_xd_ip_db -ip_search 0  -sds-pf /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/emu/xilinx_aws-vu9p-f1_shell-v04261818_201920_1_emu.hpfm -clkid 0 -ip /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/iprepo/xilinx_com_hls_vadd_1_0,vadd -o /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/_sysl/.cdb/xd_ip_db.xml
+INFO: [SYSTEM_LINK 82-37] [13:00:40] build_xd_ip_db finished successfully
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2148.105 ; gain = 0.000 ; free physical = 58603 ; free virtual = 72693
+INFO: [SYSTEM_LINK 82-51] Create system connectivity graph
+INFO: [SYSTEM_LINK 82-102] Applying explicit connections to the system connectivity graph: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [SYSTEM_LINK 82-38] [13:00:40] cfgen started: /opt/Xilinx/Vitis/2021.2/bin/cfgen -dmclkid 0 -r /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/cfgraph/cfgen_cfgraph.xml
+INFO: [CFGEN 83-0] Kernel Specs:
+INFO: [CFGEN 83-0]   kernel: vadd, num: 1  {vadd_1}
+INFO: [CFGEN 83-2226] Inferring mapping for argument vadd_1.in1 to DDR[1]
+INFO: [CFGEN 83-2226] Inferring mapping for argument vadd_1.out to DDR[1]
+INFO: [CFGEN 83-2226] Inferring mapping for argument vadd_1.in2 to DDR[1]
+INFO: [SYSTEM_LINK 82-37] [13:00:45] cfgen finished successfully
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2148.105 ; gain = 0.000 ; free physical = 58601 ; free virtual = 72693
+INFO: [SYSTEM_LINK 82-52] Create top-level block diagram
+INFO: [SYSTEM_LINK 82-38] [13:00:45] cf2bd started: /opt/Xilinx/Vitis/2021.2/bin/cf2bd  --linux --trace_buffer 1024 --input_file /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/cfgraph/cfgen_cfgraph.xml --ip_db /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/_sysl/.cdb/xd_ip_db.xml --cf_name dr --working_dir /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/_sysl/.xsd --temp_dir /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link --output_dir /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int --target_bd emu/pfm_dynamic/pfm_dynamic.bd
+INFO: [CF2BD 82-31] Launching cf2xd: cf2xd -linux -trace-buffer 1024 -i /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/cfgraph/cfgen_cfgraph.xml -r /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/_sysl/.cdb/xd_ip_db.xml -o dr.xml
+INFO: [CF2BD 82-28] cf2xd finished successfully
+INFO: [CF2BD 82-31] Launching cf_xsd: cf_xsd -disable-address-gen -bd emu/pfm_dynamic/pfm_dynamic.bd -dn dr -dp /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/sys_link/_sysl/.xsd
+INFO: [CF2BD 82-28] cf_xsd finished successfully
+INFO: [SYSTEM_LINK 82-37] [13:00:47] cf2bd finished successfully
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2148.105 ; gain = 0.000 ; free physical = 58593 ; free virtual = 72691
+INFO: [v++ 60-1441] [13:00:47] Run run_link: Step system_link: Completed
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:19 . Memory (MB): peak = 2167.652 ; gain = 0.000 ; free physical = 58642 ; free virtual = 72739
+INFO: [v++ 60-1443] [13:00:47] Run run_link: Step cf2sw: Started
+INFO: [v++ 60-1453] Command Line: cf2sw -sdsl /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/sdsl.dat -rtd /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/cf2sw.rtd -nofilter /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/cf2sw_full.rtd -xclbin /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/xclbin_orig.xml -o /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/xclbin_orig.1.xml
+INFO: [v++ 60-1454] Run Directory: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/run_link
+INFO: [v++ 60-1441] [13:00:50] Run run_link: Step cf2sw: Completed
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2167.652 ; gain = 0.000 ; free physical = 58640 ; free virtual = 72740
+INFO: [v++ 60-1443] [13:00:50] Run run_link: Step rtd2_system_diagram: Started
+INFO: [v++ 60-1453] Command Line: rtd2SystemDiagram
+INFO: [v++ 60-1454] Run Directory: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/run_link
+INFO: [v++ 60-1441] [13:00:50] Run run_link: Step rtd2_system_diagram: Completed
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.30 . Memory (MB): peak = 2167.652 ; gain = 0.000 ; free physical = 58635 ; free virtual = 72735
+INFO: [v++ 60-1443] [13:00:50] Run run_link: Step vpl: Started
+INFO: [v++ 60-1453] Command Line: vpl -t hw_emu -f /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm -g --remote_ip_cache /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/.ipcache -s --output_dir /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int --log_dir /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/logs/link --report_dir /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/link --config /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vplConfig.ini -k /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link --emulation_mode debug_waveform --no-info --iprepo /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/xo/ip_repo/xilinx_com_hls_vadd_1_0 --messageDb /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/run_link/vpl.pb /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/dr.bd.tcl
+INFO: [v++ 60-1454] Run Directory: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/run_link
+
+****** vpl v2021.2 (64-bit)
+  **** SW Build 3363252 on 2021-10-14-04:41:01
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+INFO: [VPL 60-839] Read in kernel information from file '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/kernel_info.dat'.
+WARNING: [VPL 60-642] Invalid or deprecated parameter name: compiler.lockFlowCritSlackThreshold
+INFO: [VPL 74-78] Compiler Version string: 2021.2
+INFO: [VPL 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+INFO: [VPL 60-1032] Extracting hardware platform to /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/vivado/vpl/.local/hw_platform
+[13:01:05] Run vpl: Step create_project: Started
+Creating Vivado project.
+[13:01:17] Run vpl: Step create_project: Completed
+[13:01:17] Run vpl: Step create_bd: Started
+[13:02:17] Run vpl: Step create_bd: Completed
+[13:02:17] Run vpl: Step update_bd: Started
+[13:02:21] Run vpl: Step update_bd: Completed
+[13:02:21] Run vpl: Step generate_target: Started
+[13:03:25] Run vpl: Step generate_target: Completed
+[13:03:25] Run vpl: Step config_hw_emu.gen_scripts: Started
+[13:04:08] Run vpl: Step config_hw_emu.gen_scripts: Completed
+[13:04:08] Run vpl: Step config_hw_emu.compile: Started
+[13:05:22] Run vpl: Step config_hw_emu.compile: Completed
+[13:05:22] Run vpl: Step config_hw_emu.elaborate: Started
+[13:06:20] Run vpl: Step config_hw_emu.elaborate: Completed
+[13:06:21] Run vpl: FINISHED. Run Status: config_hw_emu.elaborate Complete!
+INFO: [v++ 60-1441] [13:06:21] Run run_link: Step vpl: Completed
+Time (s): cpu = 00:00:08 ; elapsed = 00:05:31 . Memory (MB): peak = 2167.652 ; gain = 0.000 ; free physical = 57192 ; free virtual = 72469
+INFO: [v++ 60-1443] [13:06:21] Run run_link: Step rtdgen: Started
+INFO: [v++ 60-1453] Command Line: rtdgen
+INFO: [v++ 60-1454] Run Directory: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/run_link
+INFO: [v++ 60-991] clock name 'kernel2_clk/clk' (clock ID '1') is being mapped to clock name 'KERNEL_CLK' in the xclbin
+INFO: [v++ 60-991] clock name 'kernel_clk/clk' (clock ID '0') is being mapped to clock name 'DATA_CLK' in the xclbin
+INFO: [v++ 60-991] clock name 'clk_main_a0' (clock ID '') is being mapped to clock name 'clk_main_a0' in the xclbin
+INFO: [v++ 60-1230] The compiler selected the following frequencies for the runtime controllable kernel clock(s) and scalable system clock(s): System (SYSTEM) clock: clk_main_a0 = 250, Kernel (KERNEL) clock: kernel2_clk/clk = 500, Kernel (DATA) clock: kernel_clk/clk = 300
+INFO: [v++ 60-1453] Command Line: cf2sw -a /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/address_map.xml -sdsl /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/sdsl.dat -xclbin /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/xclbin_orig.xml -rtd /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vadd.link.rtd -o /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vadd.link.xml
+INFO: [v++ 60-1652] Cf2sw returned exit code: 0
+WARNING: [v++ 60-1455] Debuggable symbols are not generated successfully, clean up /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/consolidated.cf
+INFO: [v++ 60-1441] [13:06:25] Run run_link: Step rtdgen: Completed
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2167.652 ; gain = 0.000 ; free physical = 57351 ; free virtual = 72657
+INFO: [v++ 60-1443] [13:06:25] Run run_link: Step xclbinutil: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --add-section BITSTREAM:RAW:/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/behav.xse --force --target hw_emu --key-value SYS:dfx_enable:false --add-section :JSON:/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vadd.link.rtd --append-section :JSON:/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vadd.link_xml.rtd --add-section BUILD_METADATA:JSON:/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vadd.link_build.rtd --add-section EMBEDDED_METADATA:RAW:/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vadd.link.xml --add-section SYSTEM_METADATA:RAW:/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:xilinx_aws-vu9p-f1_shell-v04261818_201920_3 --output /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin
+INFO: [v++ 60-1454] Run Directory: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/run_link
+XRT Build Version: 2.12.0 (2021.2)
+       Build Date: 2022-01-11 19:12:26
+          Hash ID: 723d9e7abbe3a2c374682dbb1a59c47f230f3ee2
+Creating a default 'in-memory' xclbin image.
+
+Section: 'BITSTREAM'(0) was successfully added.
+Size   : 28382330 bytes
+Format : RAW
+File   : '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/behav.xse'
+
+Section: 'MEM_TOPOLOGY'(6) was successfully added.
+Format : JSON
+File   : 'mem_topology'
+
+Section: 'IP_LAYOUT'(8) was successfully added.
+Format : JSON
+File   : 'ip_layout'
+
+Section: 'CONNECTIVITY'(7) was successfully added.
+Format : JSON
+File   : 'connectivity'
+
+Section: 'CLOCK_FREQ_TOPOLOGY'(11) was successfully added.
+Size   : 410 bytes
+Format : JSON
+File   : '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vadd.link_xml.rtd'
+
+Section: 'BUILD_METADATA'(14) was successfully added.
+Size   : 2524 bytes
+Format : JSON
+File   : '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vadd.link_build.rtd'
+
+Section: 'EMBEDDED_METADATA'(2) was successfully added.
+Size   : 8110 bytes
+Format : RAW
+File   : '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/vadd.link.xml'
+
+Section: 'SYSTEM_METADATA'(22) was successfully added.
+Size   : 8670 bytes
+Format : RAW
+File   : '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/int/systemDiagramModelSlrBaseAddress.json'
+
+Section: 'PARTITION_METADATA'(20) was successfully appended to.
+Format : JSON
+File   : 'partition_metadata'
+Successfully wrote (28411548 bytes) to the output file: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin
+Leaving xclbinutil.
+INFO: [v++ 60-1441] [13:06:25] Run run_link: Step xclbinutil: Completed
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.08 . Memory (MB): peak = 2167.652 ; gain = 0.000 ; free physical = 57322 ; free virtual = 72654
+INFO: [v++ 60-1443] [13:06:25] Run run_link: Step xclbinutilinfo: Started
+INFO: [v++ 60-1453] Command Line: xclbinutil --quiet --force --info /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin.info --input /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin
+INFO: [v++ 60-1454] Run Directory: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/run_link
+INFO: [v++ 60-1441] [13:06:25] Run run_link: Step xclbinutilinfo: Completed
+Time (s): cpu = 00:00:00.23 ; elapsed = 00:00:00.26 . Memory (MB): peak = 2167.652 ; gain = 0.000 ; free physical = 57323 ; free virtual = 72655
+INFO: [v++ 60-1443] [13:06:25] Run run_link: Step generate_sc_driver: Started
+INFO: [v++ 60-1453] Command Line:
+INFO: [v++ 60-1454] Run Directory: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/link/run_link
+INFO: [v++ 60-1441] [13:06:25] Run run_link: Step generate_sc_driver: Completed
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2167.652 ; gain = 0.000 ; free physical = 57323 ; free virtual = 72655
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/link/system_estimate_vadd.link.xtxt
+INFO: [v++ 60-586] Created ./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin
+INFO: [v++ 60-1307] Run completed. Additional information can be found in:
+        Guidance: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/link/v++_link_vadd.link_guidance.html
+        Steps Log File: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/logs/link/link.steps.log
+
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command.
+    vitis_analyzer /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin.link_summary
+INFO: [v++ 60-791] Total elapsed time: 0h 6m 11s
+INFO: [v++ 60-1653] Closing dispatch client.
+v++ -p ./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin -t hw_emu --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm --package.out_dir ./package.hw_emu -o ./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin
+Option Map File Used: '/opt/Xilinx/Vitis/2021.2/data/vitis/vpp/optMap.xml'
+
+****** v++ v2021.2 (64-bit)
+  **** SW Build 3363252 on 2021-10-14-04:41:01
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+INFO: [v++ 60-1306] Additional information associated with this v++ package can be found at:
+        Reports: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x/reports/package
+        Log files: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x/logs/package
+Running Dispatch Server on port: 33054
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin.package_summary, at Tue Nov 21 13:06:37 2023
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Tue Nov 21 13:06:37 2023
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x/reports/package/v++_package_vadd_guidance.html', at Tue Nov 21 13:06:38 2023
+INFO: [v++ 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2021.2
+INFO: [v++ 60-1302] Platform 'xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm' has been explicitly enabled for this release with an extended warranty.
+INFO: [v++ 60-2256] Packaging for hardware emulation
+INFO: [v++ 60-2460] Successfully copied a temporary xclbin to the output xclbin: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command.
+    vitis_analyzer /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin.package_summary
+INFO: [v++ 60-791] Total elapsed time: 0h 0m 15s
+INFO: [v++ 60-1653] Closing dispatch client.
+emconfigutil --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm --od ./_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+
+****** configutil v2021.2 (64-bit)
+  **** SW Build 3363252 on 2021-10-14-04:41:01
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+INFO: [ConfigUtil 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm
+INFO: [ConfigUtil 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xsa'
+INFO: [ConfigUtil 60-1032] Extracting hardware platform to ./_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+emulation configuration file `emconfig.json` is created in ./_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3 directory
+cp -rf ./_x.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/emconfig.json .
+XCL_EMULATION_MODE=hw_emu ./hello_world ./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin
+Found Platform
+Platform Name: Xilinx
+INFO: Reading ./build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin
+Loading: './build_dir.hw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin'
+Trying to program device[0]: xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+INFO: [HW-EMU 01] Hardware emulation runs simulation underneath. Using a large data set will result in long simulation times. It is recommended that a small dataset is used for faster execution. The flow uses approximate models for Global memories and interconnect and hence the performance data generated is approximate.
+configuring penguin scheduler mode
+scheduler config ert(0), dataflow(1), slots(16), cudma(1), cuisr(0), cdma(0), cus(1)
+Device[0]: program successful!
+TEST PASSED
+INFO::[ Vitis-EM 22 ] [Time elapsed: 0 minute(s) 12 seconds, Emulation time: 0.066905 ms]
+Data transfer between kernel(s) and global memory(s)
+vadd_1:m_axi_gmem0-DDR[1]          RD = 16.000 KB              WR = 16.000 KB
+vadd_1:m_axi_gmem1-DDR[1]          RD = 16.000 KB              WR = 0.000 KB
+
+INFO: [HW-EMU 06-0] Waiting for the simulator process to exit
+INFO: [HW-EMU 06-1] All the simulator processes exited successfully
+make: Nothing to be done for `all'.
+[centos@ip-172-31-19-96 hello_world]$

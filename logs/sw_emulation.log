@@ -1,0 +1,120 @@
+[centos@ip-172-31-19-96 aws-fpga]$ cd $VITIS_DIR/examples/xilinx/hello_world
+[centos@ip-172-31-19-96 hello_world]$ make clean
+rm -rf ./hello_world /{*sw_emu*,*hw_emu*}
+rm -rf profile_* TempConfig system_estimate.xtxt *.rpt *.csv
+rm -rf src/*.ll *v++* .Xil emconfig.json dltmp* xmltmp* *.log *.jou *.wcfg *.wdb
+[centos@ip-172-31-19-96 hello_world]$ make run TARGET=sw_emu DEVICE=$AWS_PLATFORM all
+utils.mk:23: WARNING: DEVICE is deprecated in make command. Please use PLATFORM instead
+g++ -o hello_world /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/common/includes/xcl2/xcl2.cpp src/host.cpp -I/opt/xilinx/xrt/include -I/opt/Xilinx/Vivado/2021.2/include -Wall -O0 -g -std=c++1y -I/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/common/includes/xcl2 -fmessage-length=0 -L/opt/xilinx/xrt/lib -lOpenCL -pthread -lrt -lstdc++
+mkdir -p ./_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+v++ -t sw_emu --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm --save-temps  -g -c -k vadd --temp_dir ./_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3  -I'src' -o'_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo' 'src/vadd.cpp'
+Option Map File Used: '/opt/Xilinx/Vitis/2021.2/data/vitis/vpp/optMap.xml'
+
+****** v++ v2021.2 (64-bit)
+  **** SW Build 3363252 on 2021-10-14-04:41:01
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
+        Reports: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/vadd
+        Log files: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/logs/vadd
+Running Dispatch Server on port: 37710
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo.compile_summary, at Tue Nov 21 12:53:21 2023
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Tue Nov 21 12:53:24 2023
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/vadd/v++_compile_vadd_guidance.html', at Tue Nov 21 12:53:25 2023
+INFO: [v++ 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2021.2
+INFO: [v++ 60-1302] Platform 'xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm' has been explicitly enabled for this release with an extended warranty.
+INFO: [v++ 60-585] Compiling for software emulation target
+INFO: [v++ 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+INFO: [v++ 60-242] Creating kernel: 'vadd'
+INFO: [v++ 60-594] Finished kernel compilation
+INFO: [v++ 60-586] Created _x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command.
+    vitis_analyzer /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo.compile_summary
+INFO: [v++ 60-791] Total elapsed time: 0h 1m 43s
+INFO: [v++ 60-1653] Closing dispatch client.
+mkdir -p ./build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+v++ -t sw_emu --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm --save-temps  -g -l  --temp_dir ./_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3 -o'./build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin' _x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xo
+Option Map File Used: '/opt/Xilinx/Vitis/2021.2/data/vitis/vpp/optMap.xml'
+
+****** v++ v2021.2 (64-bit)
+  **** SW Build 3363252 on 2021-10-14-04:41:01
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+INFO: [v++ 60-897] Reading --xp value from platform: param:compiler.lockFlowCritSlackThreshold=0
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:hd.routingContainmentAreaExpansion=true
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:hd.supportClockNetCrossDiffReconfigurablePartitions=1
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:bitstream.enablePR=4123
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:physynth.ultraRAMOptOutput=false
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MAX_URAM_CASCADE_HEIGHT}={1}
+INFO: [v++ 60-897] Reading --xp value from platform: vivado_param:synth.elaboration.rodinMoreOptions={rt::set_parameter disableOregPackingUram true}
+WARNING: [v++ 60-642] Invalid or deprecated parameter name: compiler.lockFlowCritSlackThreshold
+INFO: [v++ 60-1306] Additional information associated with this v++ link can be found at:
+        Reports: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/link
+        Log files: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/logs/link
+Running Dispatch Server on port: 36460
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin.link_summary, at Tue Nov 21 12:55:05 2023
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Tue Nov 21 12:55:05 2023
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/link/v++_link_vadd.link_guidance.html', at Tue Nov 21 12:55:06 2023
+INFO: [v++ 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2021.2
+INFO: [v++ 60-1302] Platform 'xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm' has been explicitly enabled for this release with an extended warranty.
+INFO: [v++ 60-629] Linking for software emulation target
+INFO: [v++ 60-423]   Target device: xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+INFO: [v++ 60-645] kernel flags are '-g -I /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/src -g'
+INFO: [v++ 60-586] Created ./build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin
+INFO: [v++ 60-1307] Run completed. Additional information can be found in:
+        Guidance: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/reports/link/v++_link_vadd.link_guidance.html
+        Steps Log File: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/logs/link/link.steps.log
+
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command.
+    vitis_analyzer /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin.link_summary
+INFO: [v++ 60-791] Total elapsed time: 0h 0m 34s
+INFO: [v++ 60-1653] Closing dispatch client.
+v++ -p ./build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin -t sw_emu --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm --package.out_dir ./package.sw_emu -o ./build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin
+Option Map File Used: '/opt/Xilinx/Vitis/2021.2/data/vitis/vpp/optMap.xml'
+
+****** v++ v2021.2 (64-bit)
+  **** SW Build 3363252 on 2021-10-14-04:41:01
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+INFO: [v++ 60-1306] Additional information associated with this v++ package can be found at:
+        Reports: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x/reports/package
+        Log files: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x/logs/package
+Running Dispatch Server on port: 37727
+INFO: [v++ 60-1548] Creating build summary session with primary output /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin.package_summary, at Tue Nov 21 12:55:41 2023
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Tue Nov 21 12:55:41 2023
+INFO: [v++ 60-1315] Creating rulecheck session with output '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/_x/reports/package/v++_package_vadd_guidance.html', at Tue Nov 21 12:55:42 2023
+INFO: [v++ 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xsa'
+INFO: [v++ 74-78] Compiler Version string: 2021.2
+INFO: [v++ 60-1302] Platform 'xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm' has been explicitly enabled for this release with an extended warranty.
+INFO: [v++ 60-2256] Packaging for software emulation
+WARNING: [v++ 60-2246] Failed to find System Metadata section in /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/./build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.link.xclbin
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command.
+    vitis_analyzer /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin.package_summary
+INFO: [v++ 60-791] Total elapsed time: 0h 0m 14s
+INFO: [v++ 60-1653] Closing dispatch client.
+emconfigutil --platform /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm --od ./_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+
+****** configutil v2021.2 (64-bit)
+  **** SW Build 3363252 on 2021-10-14-04:41:01
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+INFO: [ConfigUtil 60-895]   Target platform: /home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xpfm
+INFO: [ConfigUtil 60-1578]   This platform contains Xilinx Shell Archive '/home/centos/src/project_data/aws-fpga/Vitis/aws_platform/xilinx_aws-vu9p-f1_shell-v04261818_201920_3/hw/xilinx_aws-vu9p-f1_shell-v04261818_201920_3.xsa'
+INFO: [ConfigUtil 60-1032] Extracting hardware platform to ./_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+emulation configuration file `emconfig.json` is created in ./_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3 directory
+cp -rf ./_x.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/emconfig.json .
+XCL_EMULATION_MODE=sw_emu ./hello_world ./build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin
+Found Platform
+Platform Name: Xilinx
+INFO: Reading ./build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin
+Loading: './build_dir.sw_emu.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin'
+Trying to program device[0]: xilinx_aws-vu9p-f1_shell-v04261818_201920_3
+Device[0]: program successful!
+TEST PASSED
+make: Nothing to be done for `all'.
+[centos@ip-172-31-19-96 hello_world]$
