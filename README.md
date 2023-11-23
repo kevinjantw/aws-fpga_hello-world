@@ -1,9 +1,9 @@
 # Running C/C++ Application on an AWS F1 FPGA Instance with Vitis
-There are three steps for accelerating your application on an Amazon EC2 FPGA instance:
-1. Build the host application, and the Xilinx FPGA binary 
-2. Create an AFI (Amazon FPGA Image) 
+There are three steps for accelerating your application on an Amazon EC2 FPGA instance: 
+1. Build the host application, and the Xilinx FPGA binary
+2. Create an AFI (Amazon FPGA Image)
 3. Run the FPGA accelerated application on AWS FPGA F1 instance
-
+   
 A simple "Hello World" Vitis example to get you started.
 
 # Hello World Vitis Example
@@ -32,7 +32,7 @@ clock cycle and is implemented as below:
 
 <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/f24dbe41-45bd-46ff-a7f7-b44a68200c05" width=70%>
 
-Hello world sources are [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/hello_world/src/host.cpp) and [vadd.cpp](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/hello_world/src/vadd.cpp).
+Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/hello_world/src/host.cpp) and [vadd.cpp](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/hello_world/src/vadd.cpp).
 
 # Prerequisites
 * [Create an AWS account](https://aws.amazon.com/free/) [Currently EC2 t2.micro is free tier]
@@ -69,7 +69,10 @@ Hello world sources are [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-
   (10) Click `Launch instance`  
   (11) Open the [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)  
   (12) Get running EC2 instance IP from `Public IPv4`  
-  (13) SSH connection to EC2 IP with pem file and username `centos`  
+  (13) SSH connection to EC2 IP with pem file and username `centos`, here is a MobaXterm example
+
+  <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/248380d6-7f5c-403c-b478-819694203cf1" width=70%>
+  
   (14) Configure EC2 and S3 connection (fill access key in downloaded csv file and your region)
   ```console
   $ aws configure
@@ -80,20 +83,74 @@ Hello world sources are [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-
   ```
   (15) Test transferring data between EC2 and S3
   ```console
-  $ echo 'test ec2 to s3' > test-ec2-s3storage.txt
+  $ echo 'test ec2 to s3c' > test-ec2-s3storage.txt
   $ aws s3 cp test-ec2-s3storage.txt s3://test-ec2-s3storage/test-ec2-s3storage.txt
   upload: ./test-ec2-s3storage.txt to s3://test-ec2-s3storage/test-ec2-s3storage.txt
   ```
   <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/85611197-6d00-4d1a-b85b-cb87c50713a1" width=60%>
+  
+* Request access to Amazon EC2 F1 instances  
+  (01) Open the Service quota increase [form](http://aws.amazon.com/contact-us/ec2-request)  
+  (02) Submit a Service limit increase for EC2 Instances   
+  (03) Select the region where you want to access F1 instances: US East (N.Virginia), US West (Oregon) or EU (Ireland)  
+  (04) Select the instance type, either `f1.2xlarge` or `f1.16xlarge`  
+  (05) Set the new limit value to 1 or more  
+  (06) Fill the rest of the form as appropriate and click Submit
 
-  # Build the host application, Xilinx FPGA binary and verify you are ready for AWS FPGA F1 instance
-  * Run [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) on a recommended `z1d.2xlarge` instance type
+* Reference offical document
+  [Quick Start Guide to Accelerating your C/C++ application on an AWS F1 FPGA Instance with Vitis](https://github.com/aws/aws-fpga/blob/master/Vitis/README.md#build-the-host-application-and-xilinx-fpga-binary)   
+  
+# Build the host application and Xilinx FPGA binary
+* Run [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a performance recommended `z1d.2xlarge` instance type
  
-    <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/5befcd47-f88f-4a79-ab3d-1b84a35aa45d" width=70%>
+ <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/5befcd47-f88f-4a79-ab3d-1b84a35aa45d" width=70%>
 
-  * SSH connection to the running EC2 `z1d.2xlarge` instance, here is a MobaXterm example
-    <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/248380d6-7f5c-403c-b478-819694203cf1" width=70%>
+* SSH connection to the running EC2 `z1d.2xlarge` instance, your own EC2 IP can be found in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
 
-    Your own EC2 IP can be founded in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
-
-  * Github and Environment 
+* Github and Environment  
+  Clone this github repository and source the *vitis_setup.sh* script:  
+  (01) AWS Vitis Platform that contains the dynamic hardware that enables Vitis kernels to run on AWS F1 instances  
+  (02) Valid platforms for shell_v04261818: AWS_PLATFORM_201920_3 (Default) AWS F1 Vitis platform  
+  (03) Sets up the Xilinx Vitis example submodules  
+  (04) Installs the required libraries and package dependencies  
+  (05) Run environment checks to verify supported tool/lib versions  
+  ```console
+  $ git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
+  $ cd $AWS_FPGA_REPO_DIR
+  $ source vitis_setup.sh
+  ```
+  [vitis_setup.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/vitis_setup.log)
+  
+* Software (SW) Emulation
+  For CPU-based (SW) emulation, both the host code and the FPGA binary code are compiled to run on an x86 processor. SW Emulation enables developers to iterate and refine 
+  the algorithms through fast compilation. The iteration time is similar to software compile and run cycles on a CPU.  
+  The instructions below describe how to run the Vitis SW Emulation flow using the Makefile provided with a simple "hello world" example
+  ```console
+  $ cd $VITIS_DIR/examples/xilinx/hello_world
+  $ make clean
+  $ make run TARGET=sw_emu DEVICE=$AWS_PLATFORM all
+  ```
+  [sw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/sw_emulation.log)
+  
+* Hardware (HW) Emulation
+  The Vitis hardware emulation flow enables the developer to check the correctness of the logic generated for the FPGA binary. This emulation flow invokes the hardware
+  simulator in the Vitis environment to test the functionality of the code that will be executed on the FPGA Custom Logic.
+  The instructions below describe how to run the HW Emulation flow using the Makefile provided with a simple "hello world" example:
+  ```console
+  $ cd $VITIS_DIR/examples/xilinx/hello_world
+  $ make clean
+  $ make run TARGET=hw_emu DEVICE=$AWS_PLATFORM all
+  ```
+  [hw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/hw_emulation.log)
+  
+* Generate Hardware (HW) Bitstream (xclbin)
+  The Vitis system build flow enables the developer to build their host application as well as their Xilinx FPGA Binary.
+  The instructions below describe how to build the Xilinx FPGA Binary and host application using the Makefile provided with a simple "hello world" example:
+  ```console
+  $ cd $VITIS_DIR/examples/xilinx/hello_world
+  $ make clean
+  $ make TARGET=hw DEVICE=$AWS_PLATFORM all
+  ```
+  [hw.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/hw.log)
+  
+# Test on AWS FPGA F1 instance
