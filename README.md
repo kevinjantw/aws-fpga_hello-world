@@ -120,7 +120,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [vitis_setup.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/vitis_setup.log)
   
-(04) Software (SW) Emulation
+(04) Software (SW) Emulation  
   For CPU-based (SW) emulation, both the host code and the FPGA binary code are compiled to run on an x86 processor. SW Emulation enables developers to iterate and refine 
   the algorithms through fast compilation. The iteration time is similar to software compile and run cycles on a CPU.  
   The instructions below describe how to run the Vitis SW Emulation flow using the Makefile provided with a simple "hello world" example
@@ -131,7 +131,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [sw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/sw_emulation.log)
   
-(05) Hardware (HW) Emulation
+(05) Hardware (HW) Emulation  
   The Vitis hardware emulation flow enables the developer to check the correctness of the logic generated for the FPGA binary. This emulation flow invokes the hardware
   simulator in the Vitis environment to test the functionality of the code that will be executed on the FPGA Custom Logic.
   The instructions below describe how to run the HW Emulation flow using the Makefile provided with a simple "hello world" example:
@@ -142,7 +142,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [hw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/hw_emulation.log)
   
-(06) Generate Hardware (HW) FPGA Binary 
+(06) Generate Hardware (HW) Xilinx FPGA Binary   
   The Vitis system build flow enables the developer to build their host application as well as their Xilinx FPGA Binary.
   The instructions below describe how to build the Xilinx FPGA Binary and host application using the Makefile provided with a simple "hello world" example:
   ```console
