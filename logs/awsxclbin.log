@@ -1,0 +1,50 @@
+[centos@ip-172-31-19-96 ~]$ $VITIS_DIR/tools/create_vitis_afi.sh  \
+>  -xclbin=/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin  \
+>  -o=/home/centos/vadd -s3_bucket=f1-s3 -s3_dcp_key=aws_xclbin -s3_logs_key=log
+INFO: Setting up environment variables
+INFO: Changing AWS_FPGA_REPO_DIR from /home/centos/src/project_data/aws-fpga to
+INFO: Found xclbin '/home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin'
+INFO: vadd
+WARNING: /home/centos/vadd does not match vadd
+WARNING: For github examples, -o <xclbin_filename> must be equal to vadd
+XRT Build Version: 2.12.0 (2021.2)
+       Build Date: 2022-01-11 19:12:26
+          Hash ID: 723d9e7abbe3a2c374682dbb1a59c47f230f3ee2
+------------------------------------------------------------------------------
+Warning: The option '--output' has not been specified. All operations will
+         be done in memory with the exception of the '--dump-section' command.
+------------------------------------------------------------------------------
+Reading xclbin file into memory.  File: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin
+
+Section: 'BUILD_METADATA'(14) was successfully written.
+Format: JSON
+File  : '23_11_21-151645_build.json'
+
+Section: 'CLOCK_FREQ_TOPOLOGY'(11) was successfully written.
+Format: JSON
+File  : '23_11_21-151645_clocks.json'
+
+Section: 'BITSTREAM'(0) was successfully written.
+Format: RAW
+File  : '23_11_21-151645_SH_CL_routed.dcp'
+Leaving xclbinutil.
+INFO: Split DCP from xclbin: 23_11_21-151645_SH_CL_routed.dcp
+INFO: The build Metadata from xclbin: 23_11_21-151645_build.json
+INFO: The clocks Metadata from xclbin: 23_11_21-151645_clocks.json
+INFO: Generated manifest file '23_11_21-151645_manifest.txt'
+upload: ./23_11_21-151645_Developer_Vitis_Kernel.tar to s3://f1-s3/aws_xclbin/23_11_21-151645_Developer_Vitis_Kernel.tar
+23_11_21-151645_agfi_id.txt
+XRT Build Version: 2.12.0 (2021.2)
+       Build Date: 2022-01-11 19:12:26
+          Hash ID: 723d9e7abbe3a2c374682dbb1a59c47f230f3ee2
+Reading xclbin file into memory.  File: /home/centos/src/project_data/aws-fpga/Vitis/examples/xilinx_2021.2/hello_world/build_dir.hw.xilinx_aws-vu9p-f1_shell-v04261818_201920_3/vadd.xclbin
+
+Section 'PARTITION_METADATA'(20) was successfully removed
+
+Section: 'BITSTREAM'(0) was successfully added.
+Size   : 22 bytes
+Format : RAW
+File   : '23_11_21-151645_agfi_id.txt'
+Successfully wrote (29487 bytes) to the output file: /home/centos/vadd.awsxclbin
+Leaving xclbinutil.
+[centos@ip-172-31-19-96 ~]$
