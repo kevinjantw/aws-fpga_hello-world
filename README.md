@@ -10,6 +10,8 @@ Design flow for accelerating your application on an Amazon EC2 FPGA instance:
 
 A simple "Hello World" Vitis example to get you started.
 
+Reference offical document: [Quick Start Guide to Accelerating your C/C++ application on an AWS F1 FPGA Instance with Vitis](https://github.com/aws/aws-fpga/blob/master/Vitis/README.md#build-the-host-application-and-xilinx-fpga-binary)   
+
 # Prerequisites
 * [Create an AWS account](https://aws.amazon.com/free/) [Currently EC2 t2.micro is free tier]
 * Prepare SSH keys to access the Amazon EC2 instances  
@@ -72,9 +74,6 @@ A simple "Hello World" Vitis example to get you started.
   (04) Select the instance type, either `f1.2xlarge` or `f1.16xlarge`  
   (05) Set the new limit value to 1 or more  
   (06) Fill the rest of the form as appropriate and click `Submit`
-
-* Reference offical document  
-  [Quick Start Guide to Accelerating your C/C++ application on an AWS F1 FPGA Instance with Vitis](https://github.com/aws/aws-fpga/blob/master/Vitis/README.md#build-the-host-application-and-xilinx-fpga-binary)   
 
 # Design your host application and Xilinx kernels (Hello World C/C++ Vitis Example)
 This example uses the load/compute/store coding style which is generally
@@ -145,8 +144,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   [hw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/hw_emulation.log)
   
 # Generate Xilinx FPGA binary
-Generate Hardware (HW) Xilinx FPGA Binary  
-  The Vitis system build flow enables the developer to build their host application as well as their Xilinx FPGA Binary.
+The Vitis system build flow enables the developer to build their host application as well as their Xilinx FPGA Binary.
   ```console
   $ cd $VITIS_DIR/examples/xilinx/hello_world
   $ make clean
