@@ -1,10 +1,10 @@
 # Running C/C++ Application on an AWS F1 FPGA Instance with Vitis
 Design flow for accelerating your application on an Amazon EC2 FPGA instance: 
-1. Design your host application and Xilinx kernels sources
-2. Run Software emulation & Hardware emulation
-3. Generate Xilinx FPGA binary
-4. Create an AFI (Amazon FPGA Image)
-5. Run the FPGA accelerated application on AWS FPGA F1 instance
+1. [Design your host application and Xilinx kernels sources](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/README.md#design-your-host-application-and-xilinx-kernels-hello-world-cc-vitis-example)
+2. [Run Software emulation & Hardware emulation](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/README.md#run-software-emulation--hardware-emulation)
+3. [Generate Xilinx FPGA binary](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/README.md#generate-xilinx-fpga-binary)
+4. [Create an AFI (Amazon FPGA Image)](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/README.md#create-an-afi-amazon-fpga-image)
+5. [Run the FPGA accelerated application on AWS FPGA F1 instance](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/README.md#run-the-fpga-accelerated-application-on-aws-fpga-f1-instance)
 
 <img width="983" alt="aws_flow" src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/58ae0d71-e6f0-4b2b-973e-4fe00ef473d5">
 
