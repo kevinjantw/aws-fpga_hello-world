@@ -1,38 +1,14 @@
 # Running C/C++ Application on an AWS F1 FPGA Instance with Vitis
-There are three steps for accelerating your application on an Amazon EC2 FPGA instance: 
-* Build the host application, and the Xilinx FPGA binary
-* Create an AFI (Amazon FPGA Image)
-* Run the FPGA accelerated application on AWS FPGA F1 instance
-   
+Design flow for accelerating your application on an Amazon EC2 FPGA instance: 
+1. Design your host application and Xilinx kernels sources
+2. Run Software emulation & Hardware emulation
+3. Generate Xilinx FPGA binary
+4. Create an AFI (Amazon FPGA Image)
+5. Run the FPGA accelerated application on AWS FPGA F1 instance
+
+<img width="983" alt="aws_flow" src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/58ae0d71-e6f0-4b2b-973e-4fe00ef473d5">
+
 A simple "Hello World" Vitis example to get you started.
-
-# Hello World Vitis Example
-This example uses the load/compute/store coding style which is generally
-the most efficient for implementing kernels using HLS. The load and store
-functions are responsible for moving data in and out of the kernel as
-efficiently as possible. The core functionality is decomposed across one
-of more compute functions. Whenever possible, the compute function should
-pass data through HLS streams and should contain a single set of nested loops.
-
-HLS stream objects are used to pass data between producer and consumer
-functions. Stream read and write operations have a blocking behavior which
-allows consumers and producers to synchronize with each other automatically.
-
-The dataflow pragma instructs the compiler to enable task-level pipelining.
-This is required for to load/compute/store functions to execute in a parallel
-and pipelined manner.
-
-The kernel operates on vectors of NUM_WORDS integers modeled using the hls::vector
-data type. This datatype provides intuitive support for parallelism and
-fits well the vector-add computation. The vector length is set to NUM_WORDS
-since NUM_WORDS integers amount to a total of 64 bytes, which is the maximum size of
-a kernel port. It is a good practice to match the compute bandwidth to the I/O
-bandwidth. Here the kernel loads, computes and stores NUM_WORDS integer values per
-clock cycle and is implemented as below:
-
-<img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/f24dbe41-45bd-46ff-a7f7-b44a68200c05" width=70%>
-
-Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/hello_world/src/host.cpp) and [vadd.cpp](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/hello_world/src/vadd.cpp).
 
 # Prerequisites
 * [Create an AWS account](https://aws.amazon.com/free/) [Currently EC2 t2.micro is free tier]
@@ -99,8 +75,36 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
 
 * Reference offical document  
   [Quick Start Guide to Accelerating your C/C++ application on an AWS F1 FPGA Instance with Vitis](https://github.com/aws/aws-fpga/blob/master/Vitis/README.md#build-the-host-application-and-xilinx-fpga-binary)   
-  
-# Build the host application and Xilinx FPGA binary
+
+# Design your host application and Xilinx kernels (Hello World C/C++ Vitis Example)
+This example uses the load/compute/store coding style which is generally
+the most efficient for implementing kernels using HLS. The load and store
+functions are responsible for moving data in and out of the kernel as
+efficiently as possible. The core functionality is decomposed across one
+of more compute functions. Whenever possible, the compute function should
+pass data through HLS streams and should contain a single set of nested loops.
+
+HLS stream objects are used to pass data between producer and consumer
+functions. Stream read and write operations have a blocking behavior which
+allows consumers and producers to synchronize with each other automatically.
+
+The dataflow pragma instructs the compiler to enable task-level pipelining.
+This is required for to load/compute/store functions to execute in a parallel
+and pipelined manner.
+
+The kernel operates on vectors of NUM_WORDS integers modeled using the hls::vector
+data type. This datatype provides intuitive support for parallelism and
+fits well the vector-add computation. The vector length is set to NUM_WORDS
+since NUM_WORDS integers amount to a total of 64 bytes, which is the maximum size of
+a kernel port. It is a good practice to match the compute bandwidth to the I/O
+bandwidth. Here the kernel loads, computes and stores NUM_WORDS integer values per
+clock cycle and is implemented as below:
+
+<img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/f24dbe41-45bd-46ff-a7f7-b44a68200c05" width=70%>
+
+Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/hello_world/src/host.cpp) and [vadd.cpp](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/hello_world/src/vadd.cpp).
+
+# Run Software emulation & Hardware emulation
 (01) Subscribe a [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a performance recommended `z1d.2xlarge` instance type
  
  <img src="https://github.com/kevinjantw/aws-fpga_hello-world/assets/11850122/5befcd47-f88f-4a79-ab3d-1b84a35aa45d" width=70%>
@@ -120,7 +124,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [vitis_setup.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/vitis_setup.log)
   
-(04) Software (SW) Emulation  
+(04) Software (SW) emulation  
   For CPU-based (SW) emulation, both the host code and the FPGA binary code are compiled to run on an x86 processor. SW Emulation enables developers to iterate and refine 
   the algorithms through fast compilation. The iteration time is similar to software compile and run cycles on a CPU.
   ```console
@@ -130,7 +134,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [sw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/sw_emulation.log)
   
-(05) Hardware (HW) Emulation  
+(05) Hardware (HW) emulation  
   The Vitis hardware emulation flow enables the developer to check the correctness of the logic generated for the FPGA binary. This emulation flow invokes the hardware
   simulator in the Vitis environment to test the functionality of the code that will be executed on the FPGA Custom Logic.
   ```console
@@ -140,7 +144,8 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [hw_emulation.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/hw_emulation.log)
   
-(06) Generate Hardware (HW) Xilinx FPGA Binary   
+# Generate Xilinx FPGA binary
+Generate Hardware (HW) Xilinx FPGA Binary  
   The Vitis system build flow enables the developer to build their host application as well as their Xilinx FPGA Binary.
   ```console
   $ cd $VITIS_DIR/examples/xilinx/hello_world
@@ -149,7 +154,7 @@ Hello world sources: [host.cpp](https://github.com/kevinjantw/aws-fpga_hello-wor
   ```
   [hw.log](https://github.com/kevinjantw/aws-fpga_hello-world/blob/main/logs/hw.log)
   
-# Test on AWS FPGA F1 instance
+# Create an AFI (Amazon FPGA Image)
 The *create_vitis_afi.sh* script is provided to facilitate AFI (Amazon FPGA Image) creation from a xclbin (Xilinx FPGA Binary)
 * Takes in your Xilinx FPGA Binary *.xclbin file
 * Calls *aws ec2 create_fpga_image* to generate an AFI under the hood
@@ -210,11 +215,12 @@ $ cat 23_11_23-034100_afi_id.txt
 
 (08) Terminate running `z1d.2xlarge` instance in [EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances)
 
-(09) Subscribe a [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a `f1.2xlarge` instance type
+# Run the FPGA accelerated application on AWS FPGA F1 instance
+(01) Subscribe a [FPGA Developer AMI v1.12.2](https://aws.amazon.com/marketplace/pp/prodview-gimv3gqbpe57k?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and use a `f1.2xlarge` instance type
 
-(10) Copy saved `vadd.awsxclbin` and `hello_world` to running `f1.2xlarge` instance
+(02) Copy saved `vadd.awsxclbin` and `hello_world` to running `f1.2xlarge` instance
 
-(11) To setup tools and runtime environment
+(03) To setup tools and runtime environment
 ```console
 $ git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
 $ cd $AWS_FPGA_REPO_DIR
@@ -222,7 +228,7 @@ $ source vitis_runtime_setup.sh
 # Wait till the MPD service has initialized. Check systemctl status mpd
 ```
 
-(12) Execute your Host Application
+(04) Execute your Host Application
 ```console
 $ chmod +x ./hello_world
 $ ./hello_world ./vadd.awsxclbin
